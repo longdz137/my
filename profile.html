@@ -14,9 +14,9 @@
             --text: #495057;
             --background: #ffffff;
             --verified: #1da1f2;
+            --mbbank: #ee1d23;
             --techcombank: #00a3e0;
             --momo: #a50064;
-            --zalopay: #0099ff;
             --thesieure: #ff6600;
         }
 
@@ -198,9 +198,9 @@
             margin-bottom: 15px;
         }
 
+        .mbbank { color: var(--mbbank); }
         .techcombank { color: var(--techcombank); }
         .momo { color: var(--momo); }
-        .zalopay { color: var(--zalopay); }
         .thesieure { color: var(--thesieure); }
 
         .payment-details {
@@ -450,6 +450,22 @@
     <div class="section">
         <h2>PHƯƠNG THỨC THANH TOÁN</h2>
         <div class="payment-methods">
+            <!-- MB Bank -->
+            <div class="payment-card">
+                <div class="payment-icon mbbank">
+                    <i class="fas fa-university"></i>
+                </div>
+                <h3>MB Bank</h3>
+                <div class="payment-details">
+                    <strong>Số tài khoản</strong>
+                    0987654321
+                    <strong>Chủ tài khoản</strong>
+                    NGUYEN VAN A
+                    <strong>Chi nhánh</strong>
+                    Hà Nội
+                </div>
+            </div>
+
             <!-- Techcombank -->
             <div class="payment-card">
                 <div class="payment-icon techcombank">
@@ -458,11 +474,11 @@
                 <h3>Techcombank</h3>
                 <div class="payment-details">
                     <strong>Số tài khoản</strong>
-                    1903 6666 8888
+                    190366668888
                     <strong>Chủ tài khoản</strong>
                     NGUYEN VAN A
                     <strong>Chi nhánh</strong>
-                    Hà Nội
+                    Hồ Chí Minh
                 </div>
             </div>
 
@@ -474,23 +490,7 @@
                 <h3>Ví Momo</h3>
                 <div class="payment-details">
                     <strong>Số điện thoại</strong>
-                    0987 654 321
-                    <strong>Chủ ví</strong>
-                    NGUYEN VAN A
-                    <strong>Nội dung</strong>
-                    Tên + SĐT
-                </div>
-            </div>
-
-            <!-- ZaloPay -->
-            <div class="payment-card">
-                <div class="payment-icon zalopay">
-                    <i class="fab fa-paypal"></i>
-                </div>
-                <h3>ZaloPay</h3>
-                <div class="payment-details">
-                    <strong>Số điện thoại</strong>
-                    0987 654 321
+                    0987654321
                     <strong>Chủ ví</strong>
                     NGUYEN VAN A
                     <strong>Nội dung</strong>
