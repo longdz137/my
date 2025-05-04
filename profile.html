@@ -14,6 +14,10 @@
             --text: #495057;
             --background: #ffffff;
             --verified: #1da1f2;
+            --techcombank: #00a3e0;
+            --momo: #a50064;
+            --zalopay: #0099ff;
+            --thesieure: #ff6600;
         }
 
         body {
@@ -167,26 +171,47 @@
             transform: translateY(-3px);
         }
 
-        .bank-info {
-            background: rgba(72, 149, 239, 0.05);
-            padding: 25px;
-            border-radius: 10px;
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
             margin-top: 20px;
-            border: 1px solid rgba(72, 149, 239, 0.1);
         }
 
-        .bank-item {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-
-        .contact-item i, .bank-item i {
-            margin-right: 15px;
-            color: var(--primary);
-            font-size: 1.3em;
-            width: 30px;
+        .payment-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
             text-align: center;
+        }
+
+        .payment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .payment-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .techcombank { color: var(--techcombank); }
+        .momo { color: var(--momo); }
+        .zalopay { color: var(--zalopay); }
+        .thesieure { color: var(--thesieure); }
+
+        .payment-details {
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        .payment-details strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--dark);
         }
 
         footer {
@@ -306,6 +331,10 @@
                 width: 250px;
                 right: -50px;
             }
+            
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -419,31 +448,69 @@
     </div>
     
     <div class="section">
-        <h2>THÔNG TIN CHUYỂN KHOẢN</h2>
-        <div class="bank-info">
-            <div class="bank-item">
-                <i class="fas fa-university"></i> 
-                <div>
-                    <strong>Ngân hàng</strong>: Vietcombank
+        <h2>PHƯƠNG THỨC THANH TOÁN</h2>
+        <div class="payment-methods">
+            <!-- Techcombank -->
+            <div class="payment-card">
+                <div class="payment-icon techcombank">
+                    <i class="fas fa-university"></i>
+                </div>
+                <h3>Techcombank</h3>
+                <div class="payment-details">
+                    <strong>Số tài khoản</strong>
+                    1903 6666 8888
+                    <strong>Chủ tài khoản</strong>
+                    NGUYEN VAN A
+                    <strong>Chi nhánh</strong>
+                    Hà Nội
                 </div>
             </div>
-            <div class="bank-item">
-                <i class="fas fa-user"></i> 
-                <div>
-                    <strong>Chủ tài khoản</strong>: NGUYEN VAN A
+
+            <!-- Momo -->
+            <div class="payment-card">
+                <div class="payment-icon momo">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Ví Momo</h3>
+                <div class="payment-details">
+                    <strong>Số điện thoại</strong>
+                    0987 654 321
+                    <strong>Chủ ví</strong>
+                    NGUYEN VAN A
+                    <strong>Nội dung</strong>
+                    Tên + SĐT
                 </div>
             </div>
-            <div class="bank-item">
-                <i class="fas fa-credit-card"></i> 
-                <div>
-                    <strong>Số tài khoản</strong>: 1234 5678 9012
+
+            <!-- ZaloPay -->
+            <div class="payment-card">
+                <div class="payment-icon zalopay">
+                    <i class="fab fa-paypal"></i>
+                </div>
+                <h3>ZaloPay</h3>
+                <div class="payment-details">
+                    <strong>Số điện thoại</strong>
+                    0987 654 321
+                    <strong>Chủ ví</strong>
+                    NGUYEN VAN A
+                    <strong>Nội dung</strong>
+                    Tên + SĐT
                 </div>
             </div>
-            <div class="bank-item">
-                <i class="fas fa-qrcode"></i> 
-                <div>
-                    <strong>QR Code</strong>: 
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=NguyenVanA-Vietcombank-123456789012" alt="Mã QR Code" style="margin-top: 10px; border: 1px solid #eee; border-radius: 10px;">
+
+            <!-- Thesieure.com -->
+            <div class="payment-card">
+                <div class="payment-icon thesieure">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <h3>Thesieure.com</h3>
+                <div class="payment-details">
+                    <strong>Tài khoản</strong>
+                    example_user
+                    <strong>ID tài khoản</strong>
+                    123456
+                    <strong>Hỗ trợ</strong>
+                    Liên hệ trước
                 </div>
             </div>
         </div>
