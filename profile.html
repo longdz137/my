@@ -1,352 +1,685 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Profile - [Tên của bạn]</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | [Tên của bạn]</title>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --primary-dark: #5649c0;
+            --secondary: #a29bfe;
+            --accent: #fd79a8;
+            --light: #f8f9fa;
+            --dark: #2d3436;
+            --dark-light: #636e72;
+            --text: #2d3436;
+            --text-light: #636e72;
+            --background: #ffffff;
+            --card-bg: #ffffff;
+            --verified: #00b894;
+            --mbbank: #ee1d23;
+            --techcombank: #00a3e0;
+            --momo: #a50064;
+            --thesieure: #ff6600;
+        }
 
-  <style>
-    :root {
-      --primary: #7b2ff7;
-      --secondary: #5a189a;
-      --accent: #80ffdb;
-      --light: #f8f9fa;
-      --dark: #212529;
-      --text: #495057;
-      --background: #ffffff;
-      --verified: #1da1f2;
-      --mbbank: #ee1d23;
-      --techcombank: #00a3e0;
-      --momo: #a50064;
-      --thesieure: #ff6600;
-    }
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
-    body.dark {
-      --light: #121212;
-      --background: #1e1e2f;
-      --text: #dcdcdc;
-      --primary: #9d4edd;
-      --secondary: #5a189a;
-      --accent: #80ffdb;
-    }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.8;
+            color: var(--text);
+            background-color: #f5f6fa;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+            overflow-x: hidden;
+        }
 
-    * {
-      box-sizing: border-box;
-    }
+        /* Header sang trọng */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 100px 0 50px 0;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(108, 92, 231, 0.3);
+        }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      line-height: 1.8;
-      color: var(--text);
-      background-color: var(--light);
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 20px;
-      transition: all 0.3s ease;
-    }
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+        }
 
-    header {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      padding: 70px 0 30px 0;
-      text-align: center;
-      border-radius: 15px;
-      margin-bottom: 60px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      position: relative;
-    }
+        /* Avatar thiết kế sang trọng */
+        .avatar-wrapper {
+            position: relative;
+            width: 100%;
+            margin-bottom: 25px;
+        }
 
-    .toggle-theme {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: rgba(255, 255, 255, 0.2);
-      border: none;
-      padding: 10px 15px;
-      color: white;
-      border-radius: 50px;
-      cursor: pointer;
-      font-size: 0.9em;
-      transition: background 0.3s ease;
-    }
+        .avatar-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+            background: white;
+            position: relative;
+            z-index: 10;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
 
-    .toggle-theme:hover {
-      background: rgba(255, 255, 255, 0.4);
-    }
+        .avatar-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
 
-    .avatar-container {
-      width: 120px;
-      height: 120px;
-      margin: 0 auto;
-      border-radius: 50%;
-      border: 5px solid white;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      overflow: hidden;
-      background: white;
-      position: relative;
-      z-index: 10;
-      transition: transform 0.3s ease;
-    }
+        .avatar-container::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.3);
+            pointer-events: none;
+        }
 
-    .avatar-container:hover {
-      transform: scale(1.05);
-    }
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
 
-    .avatar-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+        /* Tên và tiêu đề */
+        h1 {
+            margin: 0;
+            font-size: 2.8em;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
 
-    h1 {
-      margin: 10px 0 0 0;
-      font-size: 2.5em;
-      font-weight: 700;
-      letter-spacing: 1px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-    }
+        .verified-badge {
+            color: var(--verified);
+            font-size: 0.9em;
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-    .verified-badge {
-      color: var(--verified);
-      font-size: 0.8em;
-      display: inline-flex;
-      align-items: center;
-      cursor: pointer;
-    }
+        .verified-badge:hover {
+            transform: scale(1.1);
+        }
 
-    .title {
-      font-size: 1.2em;
-      margin-top: 10px;
-      opacity: 0.9;
-    }
+        .title {
+            font-size: 1.3em;
+            margin-top: 15px;
+            opacity: 0.9;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
 
-    .section {
-      background: var(--background);
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-      margin-bottom: 30px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      transition: all 0.3s ease;
-    }
+        /* Card thiết kế cao cấp */
+        .profile-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 50px;
+            padding: 0 30px;
+        }
 
-    .section:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    }
+        .section {
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
 
-    h2 {
-      color: var(--primary);
-      margin-bottom: 15px;
-      font-size: 1.8em;
-      position: relative;
-    }
+        .section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+        }
 
-    h2::after {
-      content: "";
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 50px;
-      height: 3px;
-      background: var(--accent);
-    }
+        .section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
 
-    .contact-info,
-    .payment-methods {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
+        h2 {
+            color: var(--primary);
+            padding-bottom: 15px;
+            margin-top: 0;
+            font-size: 1.8em;
+            position: relative;
+            font-weight: 600;
+        }
 
-    .contact-item,
-    .payment-card {
-      background: rgba(72, 149, 239, 0.05);
-      padding: 20px;
-      border-radius: 10px;
-      transition: all 0.3s ease;
-      text-align: center;
-    }
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 3px;
+        }
 
-    .contact-item:hover,
-    .payment-card:hover {
-      background: rgba(72, 149, 239, 0.1);
-      transform: translateY(-5px);
-    }
+        /* Phương thức thanh toán cao cấp */
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
 
-    .payment-icon {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-    }
+        .payment-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: none;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .mbbank { color: var(--mbbank); }
-    .techcombank { color: var(--techcombank); }
-    .momo { color: var(--momo); }
-    .thesieure { color: var(--thesieure); }
+        .payment-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
 
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 20px;
-    }
+        .payment-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
 
-    .social-links a {
-      color: white;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: var(--primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      font-size: 1.5em;
-      text-decoration: none;
-    }
+        .payment-icon {
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
 
-    .social-links a:hover {
-      background: var(--secondary);
-      transform: translateY(-5px);
-    }
+        .payment-card:hover .payment-icon {
+            transform: scale(1.1);
+        }
 
-    footer {
-      text-align: center;
-      padding: 30px;
-      background: var(--background);
-      border-radius: 15px;
-      margin-top: 50px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    }
+        .mbbank { color: var(--mbbank); }
+        .techcombank { color: var(--techcombank); }
+        .momo { color: var(--momo); }
+        .thesieure { color: var(--thesieure); }
 
-    .youtube-music {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      z-index: 100;
-    }
+        .payment-details {
+            margin-top: 15px;
+            font-size: 0.95em;
+        }
 
-    .music-toggle {
-      background: var(--primary);
-      color: white;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 10px 30px rgba(67, 97, 238, 0.5);
-      transition: all 0.3s ease;
-      border: none;
-      outline: none;
-      font-size: 1.5em;
-    }
+        .payment-details strong {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-weight: 600;
+        }
 
-    .music-toggle:hover {
-      transform: scale(1.1);
-    }
+        /* Footer thiết kế sang trọng */
+        footer {
+            text-align: center;
+            padding: 40px 30px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            margin-top: 70px;
+            color: white;
+            position: relative;
+        }
 
-    .youtube-player {
-      position: absolute;
-      bottom: 80px;
-      right: 0;
-      width: 300px;
-      height: 0;
-      overflow: hidden;
-      border-radius: 10px;
-      transition: height 0.5s ease;
-      background: var(--dark);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    }
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+        }
 
-    .youtube-player.show {
-      height: 180px;
-    }
+        footer p {
+            font-size: 1.1em;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin: 0;
+            opacity: 0.9;
+        }
 
-    @media (max-width: 768px) {
-      .youtube-music {
-        bottom: 20px;
-        right: 20px;
-      }
-      .youtube-player {
-        width: 250px;
-        right: -30px;
-      }
-    }
-  </style>
+        .social-links {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            font-size: 1.3em;
+            text-decoration: none;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .social-links a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        /* Nhạc YouTube thiết kế cao cấp */
+        .youtube-music {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            z-index: 100;
+        }
+
+        .music-toggle {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 15px 35px rgba(108, 92, 231, 0.4);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: none;
+            outline: none;
+            font-size: 1.6em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .music-toggle::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255,255,255,0.3),
+                rgba(255,255,255,0)
+            );
+            transform: rotate(30deg);
+            transition: all 0.5s ease;
+        }
+
+        .music-toggle:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 20px 45px rgba(108, 92, 231, 0.6);
+        }
+
+        .music-toggle:hover::before {
+            transform: rotate(45deg) translate(10%, 10%);
+        }
+
+        .youtube-player {
+            position: absolute;
+            bottom: 90px;
+            right: 0;
+            width: 350px;
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            transition: height 0.5s ease, opacity 0.3s ease;
+            background: var(--dark);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            opacity: 0;
+        }
+
+        .youtube-player.show {
+            height: 200px;
+            opacity: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 80px 0 40px 0;
+            }
+            
+            .avatar-container {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .profile-container {
+                padding: 0 20px;
+                flex-direction: column;
+            }
+            
+            .youtube-music {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .music-toggle {
+                width: 60px;
+                height: 60px;
+                font-size: 1.4em;
+            }
+            
+            .youtube-player {
+                width: 280px;
+                right: -50px;
+            }
+            
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animated {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <header>
-    <button class="toggle-theme" onclick="toggleTheme()">Chế độ tối</button>
-    <div class="avatar-container">
-      <img src="https://images.unsplash.com/photo-1438761681033-6461" alt="Avatar" />
-    </div>
-    <h1>
-      Tên của bạn <span class="verified-badge"><i class="fas fa-check-circle"></i></span>
-    </h1>
-    <p class="title">Mô tả ngắn gọn hoặc chức danh</p>
-  </header>
-
-  <section class="section">
-    <h2>Thông tin liên hệ</h2>
-    <div class="contact-info">
-      <div class="contact-item"><i class="fas fa-envelope"></i> email@example.com</div>
-      <div class="contact-item"><i class="fas fa-phone"></i> 0123 456 789</div>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>Phương thức thanh toán</h2>
-    <div class="payment-methods">
-      <div class="payment-card mbbank">
-        <div class="payment-icon"><i class="fas fa-university"></i></div>
-        <div class="payment-details">
-          <strong>MB Bank</strong>
-          Số tài khoản: 123456789
+    <!-- Nhúng nhạc từ YouTube -->
+    <div class="youtube-music">
+        <button class="music-toggle" id="musicToggle">
+            <i class="fas fa-music"></i>
+        </button>
+        <div class="youtube-player" id="youtubePlayer">
+            <iframe width="100%" height="200" src="https://www.youtube.com/embed/5qap5aO4i9A?autoplay=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-      </div>
-      <div class="payment-card momo">
-        <div class="payment-icon"><i class="fas fa-mobile-alt"></i></div>
-        <div class="payment-details">
-          <strong>MOMO</strong>
-          0987654321
+    </div>
+    
+    <header>
+        <div class="avatar-wrapper">
+            <div class="avatar-container animated">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Avatar">
+            </div>
         </div>
-      </div>
+        
+        <h1 class="animated delay-1">
+            [Tên của bạn]
+            <span class="verified-badge" title="Tài khoản đã xác minh">
+                <i class="fas fa-check-circle"></i>
+            </span>
+        </h1>
+        <div class="title animated delay-2">[Nghề nghiệp/Slogan cá nhân]</div>
+    </header>
+    
+    <div class="profile-container">
+        <div class="profile-content">
+            <div class="section animated delay-1">
+                <h2>GIỚI THIỆU BẢN THÂN</h2>
+                <p>Xin chào! Tôi là <strong>[Tên của bạn]</strong>, một <strong>[nghề nghiệp]</strong> đến từ <strong>[quê quán]</strong>. Tôi đam mê <strong>[sở thích/đam mê chính]</strong> và luôn tìm kiếm cơ hội để <strong>[mục tiêu cá nhân]</strong>.</p>
+                
+                <p>Với <strong>[X năm]</strong> kinh nghiệm trong lĩnh vực <strong>[lĩnh vực chuyên môn]</strong>, tôi đã có cơ hội <strong>[mô tả ngắn về kinh nghiệm]</strong>. Hiện tại, tôi đang <strong>[công việc hiện tại/mục tiêu hiện tại]</strong>.</p>
+                
+                <h3>Sở thích</h3>
+                <div class="interests">
+                    <div class="interest-tag">Du lịch</div>
+                    <div class="interest-tag">Âm nhạc</div>
+                    <div class="interest-tag">Đọc sách</div>
+                    <div class="interest-tag">Nấu ăn</div>
+                    <div class="interest-tag">Thể thao</div>
+                    <div class="interest-tag">Nhiếp ảnh</div>
+                </div>
+            </div>
+            
+            <div class="section animated delay-2">
+                <h2>THÔNG TIN CÁ NHÂN</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-birthday-cake"></i> 
+                        <div>
+                            <strong>Ngày sinh</strong><br>
+                            01/01/1990
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i> 
+                        <div>
+                            <strong>Địa chỉ</strong><br>
+                            Hà Nội, Việt Nam
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i> 
+                        <div>
+                            <strong>Email</strong><br>
+                            <a href="mailto:email@example.com" style="color: var(--primary);">email@example.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i> 
+                        <div>
+                            <strong>Điện thoại</strong><br>
+                            +84 123 456 789
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </section>
-
-  <footer>
-    <p>© 2025 - My Profile. All rights reserved.</p>
-    <div class="social-links">
-      <a href="#"><i class="fab fa-facebook-f"></i></a>
-      <a href="#"><i class="fab fa-telegram-plane"></i></a>
+    
+    <div class="section animated delay-3">
+        <h2>KINH NGHIỆM & HỌC VẤN</h2>
+        
+        <h3><i class="fas fa-briefcase"></i> Kinh nghiệm làm việc</h3>
+        <div style="margin-left: 30px;">
+            <div style="margin-bottom: 20px;">
+                <strong>Công ty ABC</strong> (2020 - Hiện tại)<br>
+                <em>Vị trí công việc</em>
+                <p style="margin-top: 5px;">Mô tả công việc và thành tích đạt được...</p>
+            </div>
+            <div>
+                <strong>Công ty XYZ</strong> (2018 - 2020)<br>
+                <em>Vị trí công việc</em>
+                <p style="margin-top: 5px;">Mô tả công việc và thành tích đạt được...</p>
+            </div>
+        </div>
+        
+        <h3 style="margin-top: 30px;"><i class="fas fa-graduation-cap"></i> Học vấn</h3>
+        <div style="margin-left: 30px;">
+            <div>
+                <strong>Đại học Quốc gia Hà Nội</strong> (2014 - 2018)<br>
+                <em>Cử nhân ngành Công nghệ Thông tin</em>
+            </div>
+        </div>
     </div>
-  </footer>
+    
+    <div class="section animated delay-4">
+        <h2>PHƯƠNG THỨC THANH TOÁN</h2>
+        <div class="payment-methods">
+            <!-- MB Bank -->
+            <div class="payment-card">
+                <div class="payment-icon mbbank">
+                    <i class="fas fa-university"></i>
+                </div>
+                <h3>MB Bank</h3>
+                <div class="payment-details">
+                    <strong>Số tài khoản</strong>
+                    0987654321
+                    <strong>Chủ tài khoản</strong>
+                    NGUYEN VAN A
+                    <strong>Chi nhánh</strong>
+                    Hà Nội
+                </div>
+            </div>
 
-  <div class="youtube-music">
-    <button class="music-toggle" id="musicToggle">
-      <i class="fas fa-music"></i>
-    </button>
-    <div class="youtube-player" id="youtubePlayer">
-      <iframe width="100%" height="180" src="https://www.youtube.com/embed/5qap5aO4i9A?autoplay=0" frameborder="0" allowfullscreen></iframe>
+            <!-- Techcombank -->
+            <div class="payment-card">
+                <div class="payment-icon techcombank">
+                    <i class="fas fa-university"></i>
+                </div>
+                <h3>Techcombank</h3>
+                <div class="payment-details">
+                    <strong>Số tài khoản</strong>
+                    190366668888
+                    <strong>Chủ tài khoản</strong>
+                    NGUYEN VAN A
+                    <strong>Chi nhánh</strong>
+                    Hồ Chí Minh
+                </div>
+            </div>
+
+            <!-- Momo -->
+            <div class="payment-card">
+                <div class="payment-icon momo">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Ví Momo</h3>
+                <div class="payment-details">
+                    <strong>Số điện thoại</strong>
+                    0987654321
+                    <strong>Chủ ví</strong>
+                    NGUYEN VAN A
+                    <strong>Nội dung</strong>
+                    Tên + SĐT
+                </div>
+            </div>
+
+            <!-- Thesieure.com -->
+            <div class="payment-card">
+                <div class="payment-icon thesieure">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <h3>Thesieure.com</h3>
+                <div class="payment-details">
+                    <strong>Tài khoản</strong>
+                    example_user
+                    <strong>ID tài khoản</strong>
+                    123456
+                    <strong>Hỗ trợ</strong>
+                    Liên hệ trước
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+    
+    <footer class="animated delay-4">
+        <p>"Hãy theo đuổi đam mê, thành công sẽ theo đuổi bạn"</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p style="margin-top: 30px; opacity: 0.7;">&copy; 2023 [Tên của bạn]. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        // Điều khiển nhạc YouTube
+        const musicToggle = document.getElementById('musicToggle');
+        const youtubePlayer = document.getElementById('youtubePlayer');
+        let isMusicVisible = false;
+        
+        musicToggle.addEventListener('click', function() {
+            isMusicVisible = !isMusicVisible;
+            youtubePlayer.classList.toggle('show', isMusicVisible);
+            
+            // Đổi icon
+            const icon = musicToggle.querySelector('i');
+            if (isMusicVisible) {
+                icon.classList.remove('fa-music');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-music');
+            }
+        });
+        
+        // Animation khi cuộn trang
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.section, footer');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
 
-  <script>
-    document.getElementById('musicToggle').addEventListener('click', function () {
-      document.getElementById('youtubePlayer').classList.toggle('show');
-    });
+        // Kích hoạt hiệu ứng ban đầu
+        document.querySelectorAll('.section, footer').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        });
 
-    function toggleTheme() {
-      document.body.classList.toggle('dark');
-    }
-  </script>
+        // Tự động hiển thị hiệu ứng khi trang tải xong
+        window.addEventListener('load', () => {
+            animateOnScroll();
+        });
+
+        // Theo dõi sự kiện scroll
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
 </body>
 </html>
