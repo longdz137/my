@@ -13,6 +13,7 @@
             --dark: #212529;
             --text: #495057;
             --background: #ffffff;
+            --verified: #1da1f2;
         }
 
         body {
@@ -28,30 +29,62 @@
         header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 50px 0;
+            padding: 80px 0 40px 0;
             text-align: center;
             border-radius: 15px;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
             box-shadow: 0 10px 30px rgba(67, 97, 238, 0.3);
             position: relative;
             overflow: hidden;
         }
 
-        header::after {
-            content: "";
+        .avatar-container {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: var(--accent);
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            overflow: hidden;
+            background: white;
+            z-index: 10;
+            transition: transform 0.3s ease;
+        }
+
+        .avatar-container:hover {
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         h1 {
             margin: 0;
-            font-size: 2.8em;
+            font-size: 2.5em;
             font-weight: 700;
             letter-spacing: 1px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .verified-badge {
+            color: var(--verified);
+            font-size: 0.8em;
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .verified-badge:hover {
+            filter: brightness(1.1);
         }
 
         .title {
@@ -65,25 +98,6 @@
             flex-wrap: wrap;
             gap: 40px;
             margin-bottom: 40px;
-        }
-
-        .profile-image {
-            flex: 1;
-            min-width: 300px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            transition: transform 0.5s ease;
-        }
-
-        .profile-image:hover {
-            transform: translateY(-10px);
-        }
-
-        .profile-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
 
         .profile-content {
@@ -227,60 +241,50 @@
             transform: translateY(-3px);
         }
 
-        .music-player {
+        .youtube-music {
             position: fixed;
             bottom: 30px;
             right: 30px;
             z-index: 100;
-            background: white;
-            padding: 15px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            max-width: 300px;
         }
 
-        .music-control {
+        .music-toggle {
             background: var(--primary);
             color: white;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            box-shadow: 0 10px 30px rgba(67, 97, 238, 0.5);
             transition: all 0.3s ease;
             border: none;
             outline: none;
-            font-size: 1.2em;
+            font-size: 1.5em;
         }
 
-        .music-control:hover {
-            background: var(--secondary);
+        .music-toggle:hover {
             transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(67, 97, 238, 0.7);
         }
 
-        .music-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .music-title {
-            font-weight: bold;
-            white-space: nowrap;
+        .youtube-player {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 300px;
+            height: 0;
             overflow: hidden;
-            text-overflow: ellipsis;
+            border-radius: 10px;
+            transition: height 0.5s ease;
+            background: var(--dark);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        .music-artist {
-            font-size: 0.8em;
-            opacity: 0.7;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+        .youtube-player.show {
+            height: 180px;
         }
 
         @media (max-width: 768px) {
@@ -288,42 +292,45 @@
                 flex-direction: column;
             }
             
-            .music-player {
+            .youtube-music {
                 bottom: 20px;
                 right: 20px;
-                left: 20px;
-                max-width: none;
+            }
+            
+            .youtube-player {
+                width: 250px;
+                right: -50px;
             }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Player nhạc -->
-    <div class="music-player" id="musicPlayer">
-        <button class="music-control" id="musicControl">
-            <i class="fas fa-play"></i>
+    <!-- Nhúng nhạc từ YouTube -->
+    <div class="youtube-music">
+        <button class="music-toggle" id="musicToggle">
+            <i class="fas fa-music"></i>
         </button>
-        <div class="music-info">
-            <div class="music-title" id="musicTitle">Bài hát yêu thích</div>
-            <div class="music-artist" id="musicArtist">Nghệ sĩ</div>
+        <div class="youtube-player" id="youtubePlayer">
+            <iframe width="100%" height="180" src="https://www.youtube.com/embed/5qap5aO4i9A?autoplay=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <audio id="bgMusic" loop>
-            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-            Trình duyệt của bạn không hỗ trợ phát nhạc.
-        </audio>
     </div>
     
     <header>
-        <h1>[Tên của bạn]</h1>
+        <div class="avatar-container">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Avatar">
+        </div>
+        
+        <h1>
+            [Tên của bạn]
+            <span class="verified-badge" title="Tài khoản đã xác minh">
+                <i class="fas fa-check-circle"></i>
+            </span>
+        </h1>
         <div class="title">[Nghề nghiệp/Slogan cá nhân]</div>
     </header>
     
     <div class="profile-container">
-        <div class="profile-image">
-            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Ảnh chân dung [Tên của bạn]">
-        </div>
-        
         <div class="profile-content">
             <div class="section">
                 <h2>GIỚI THIỆU BẢN THÂN</h2>
@@ -447,52 +454,23 @@
     </footer>
     
     <script>
-        // Điều khiển nhạc
-        const musicControl = document.getElementById('musicControl');
-        const bgMusic = document.getElementById('bgMusic');
-        const musicTitle = document.getElementById('musicTitle');
-        const musicArtist = document.getElementById('musicArtist');
-        let isPlaying = false;
+        // Điều khiển nhạc YouTube
+        const musicToggle = document.getElementById('musicToggle');
+        const youtubePlayer = document.getElementById('youtubePlayer');
+        let isMusicVisible = false;
         
-        // Danh sách nhạc có thể thay đổi
-        const playlist = [
-            {
-                title: "Nhạc chill cuối tuần",
-                artist: "Lofi Vibes",
-                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-            },
-            {
-                title: "Bản acoustic hay nhất",
-                artist: "Acoustic Coffee",
-                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
-            }
-        ];
-        
-        let currentTrack = 0;
-        
-        function updateTrackInfo() {
-            musicTitle.textContent = playlist[currentTrack].title;
-            musicArtist.textContent = playlist[currentTrack].artist;
-            bgMusic.src = playlist[currentTrack].src;
-        }
-        
-        musicControl.addEventListener('click', function() {
-            if (isPlaying) {
-                bgMusic.pause();
-                musicControl.innerHTML = '<i class="fas fa-play"></i>';
+        musicToggle.addEventListener('click', function() {
+            isMusicVisible = !isMusicVisible;
+            youtubePlayer.classList.toggle('show', isMusicVisible);
+            
+            // Đổi icon
+            const icon = musicToggle.querySelector('i');
+            if (isMusicVisible) {
+                icon.classList.remove('fa-music');
+                icon.classList.add('fa-times');
             } else {
-                bgMusic.play();
-                musicControl.innerHTML = '<i class="fas fa-pause"></i>';
-                updateTrackInfo();
-            }
-            isPlaying = !isPlaying;
-        });
-        
-        bgMusic.addEventListener('ended', function() {
-            currentTrack = (currentTrack + 1) % playlist.length;
-            updateTrackInfo();
-            if (isPlaying) {
-                bgMusic.play();
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-music');
             }
         });
         
@@ -506,10 +484,33 @@
             } else {
                 header.style.transform = 'translateY(0)';
             }
+            
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop < window.innerHeight - 100) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
         });
         
-        // Tự động cập nhật thông tin nhạc khi trang tải
-        updateTrackInfo();
+        // Kích hoạt hiệu ứng ban đầu
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+        
+        // Tự động hiển thị hiệu ứng khi trang tải xong
+        setTimeout(() => {
+            document.querySelectorAll('.section').forEach((section, index) => {
+                setTimeout(() => {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        }, 500);
     </script>
 </body>
 </html>
