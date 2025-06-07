@@ -3,27 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phạm Hữu Dũng Media - Dịch vụ truyền thông chuyên nghiệp</title>
+    <title>Sky Luxury Media - Truyền thông & Tổ chức sự kiện chuyên nghiệp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #e63946;
+            --secondary-color: #1d3557;
+            --accent-color: #a8dadc;
+            --light-color: #f1faee;
+            --dark-color: #457b9d;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background-color: #f5f5f5;
+            background-color: #f8f9fa;
             color: #333;
+            line-height: 1.6;
         }
         
+        /* Header */
         header {
-            background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            transition: all 0.3s ease;
         }
         
         .header-container {
@@ -31,14 +43,21 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 5%;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
         
         .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #d82a1d;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary-color);
         }
         
         nav ul {
@@ -47,103 +66,190 @@
         }
         
         nav ul li {
-            margin-left: 30px;
+            margin-left: 25px;
+            position: relative;
         }
         
         nav ul li a {
             text-decoration: none;
-            color: #333;
-            font-weight: 500;
+            color: var(--secondary-color);
+            font-weight: 600;
             transition: color 0.3s;
+            font-size: 16px;
         }
         
         nav ul li a:hover {
-            color: #d82a1d;
+            color: var(--primary-color);
         }
         
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--secondary-color);
+        }
+        
+        /* Hero Section */
         .hero {
-            background-image: url('https://www.phamhuudungmedia.vn/wp-content/uploads/2023/04/banner-web-1.jpg');
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://www.phamhuudungmedia.vn/wp-content/uploads/2023/04/banner-web-1.jpg');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             height: 100vh;
             display: flex;
             align-items: center;
             padding-top: 80px;
+            color: white;
+            text-align: center;
         }
         
         .hero-content {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 5%;
-            color: #fff;
+            animation: fadeIn 1.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .hero h1 {
-            font-size: 48px;
+            font-size: 3.5rem;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            line-height: 1.2;
         }
         
         .hero p {
-            font-size: 18px;
+            font-size: 1.2rem;
             margin-bottom: 30px;
-            max-width: 600px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .btn {
             display: inline-block;
             padding: 12px 30px;
-            background-color: #d82a1d;
-            color: #fff;
+            background-color: var(--primary-color);
+            color: white;
             text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
-            transition: background-color 0.3s;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
         }
         
         .btn:hover {
-            background-color: #b52217;
+            background-color: transparent;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
         
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--secondary-color);
+        }
+        
+        /* Services Section */
         .services {
-            padding: 80px 5%;
-            max-width: 1200px;
+            padding: 100px 5%;
+            max-width: 1400px;
             margin: 0 auto;
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
         
         .section-title h2 {
-            font-size: 36px;
-            color: #d82a1d;
+            font-size: 2.5rem;
+            color: var(--secondary-color);
             margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: var(--primary-color);
+            bottom: -10px;
+            left: 25%;
         }
         
         .section-title p {
             color: #666;
-            font-size: 18px;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
         }
         
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
         }
         
         .service-card {
-            background-color: #fff;
+            background-color: white;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            position: relative;
         }
         
         .service-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            background-color: var(--primary-color);
+            color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
         }
         
         .service-img {
@@ -163,13 +269,14 @@
         }
         
         .service-content {
-            padding: 20px;
+            padding: 50px 25px 25px;
+            text-align: center;
         }
         
         .service-content h3 {
-            font-size: 22px;
+            font-size: 1.5rem;
             margin-bottom: 15px;
-            color: #333;
+            color: var(--secondary-color);
         }
         
         .service-content p {
@@ -177,70 +284,253 @@
             margin-bottom: 20px;
         }
         
+        /* Contact Section */
+        .contact {
+            padding: 100px 5%;
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+        
+        .contact-info p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--accent-color);
+            width: 20px;
+        }
+        
+        .contact-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .contact-form h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            background-color: #c1121f;
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
         footer {
-            background-color: #222;
-            color: #fff;
-            padding: 50px 5% 20px;
+            background-color: #111;
+            color: #ddd;
+            padding: 80px 5% 30px;
         }
         
         .footer-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            gap: 40px;
         }
         
         .footer-col h3 {
-            font-size: 20px;
-            margin-bottom: 20px;
-            color: #d82a1d;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: white;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: 0;
+            left: 0;
         }
         
         .footer-col p, .footer-col a {
-            color: #bbb;
-            margin-bottom: 10px;
+            color: #aaa;
+            margin-bottom: 15px;
             display: block;
             text-decoration: none;
+            transition: color 0.3s;
         }
         
         .footer-col a:hover {
-            color: #fff;
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #222;
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
         }
         
         .copyright {
             text-align: center;
             padding-top: 30px;
-            margin-top: 30px;
-            border-top: 1px solid #444;
-            color: #bbb;
+            margin-top: 50px;
+            border-top: 1px solid #333;
+            color: #777;
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
         }
         
         @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                padding: 15px;
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: white;
+                transition: all 0.5s ease;
+                z-index: 999;
             }
             
-            .logo {
-                margin-bottom: 15px;
+            nav.active {
+                left: 0;
             }
             
             nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
+                flex-direction: column;
+                padding: 30px;
             }
             
             nav ul li {
-                margin: 0 10px 10px;
+                margin: 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
             }
             
             .hero h1 {
-                font-size: 36px;
+                font-size: 2.2rem;
             }
             
             .hero p {
-                font-size: 16px;
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .btn-group {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -248,66 +538,132 @@
 <body>
     <header>
         <div class="header-container">
-            <div class="logo">PHẠM HỮU DŨNG MEDIA</div>
-            <nav>
+            <div class="logo">
+                <i class="fas fa-photo-video"></i>
+                PHẠM HỮU DŨNG MEDIA
+            </div>
+            <nav id="main-nav">
                 <ul>
-                    <li><a href="#">Trang chủ</a></li>
-                    <li><a href="#">Giới thiệu</a></li>
-                    <li><a href="#">Dịch vụ</a></li>
-                    <li><a href="#">Dự án</a></li>
-                    <li><a href="#">Tin tức</a></li>
-                    <li><a href="#">Liên hệ</a></li>
+                    <li><a href="#home">Trang chủ</a></li>
+                    <li><a href="#services">Dịch vụ</a></li>
+                    <li><a href="#portfolio">Dự án</a></li>
+                    <li><a href="#about">Về chúng tôi</a></li>
+                    <li><a href="#contact">Liên hệ</a></li>
                 </ul>
             </nav>
+            <div class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </header>
     
-    <section class="hero">
+    <section class="hero" id="home">
         <div class="hero-content">
-            <h1>DỊCH VỤ TRUYỀN THÔNG CHUYÊN NGHIỆP</h1>
-            <p>Chúng tôi cung cấp các giải pháp truyền thông tổng thể, sáng tạo và hiệu quả cho doanh nghiệp của bạn.</p>
-            <a href="#" class="btn">LIÊN HỆ NGAY</a>
+            <h1>GIẢI PHÁP TRUYỀN THÔNG TOÀN DIỆN</h1>
+            <p>Chúng tôi cung cấp các dịch vụ truyền thông sáng tạo, tổ chức sự kiện chuyên nghiệp và giải pháp marketing hiệu quả cho doanh nghiệp của bạn</p>
+            <div class="btn-group">
+                <a href="#services" class="btn">Dịch vụ của chúng tôi</a>
+                <a href="#contact" class="btn btn-outline">Liên hệ ngay</a>
+            </div>
         </div>
     </section>
     
-    <section class="services">
+    <section class="services" id="services">
         <div class="section-title">
-            <h2>DỊCH VỤ CỦA CHÚNG TÔI</h2>
-            <p>Những dịch vụ truyền thông chất lượng cao mang lại hiệu quả tối ưu cho khách hàng</p>
+            <h2>DỊCH VỤ NỔI BẬT</h2>
+            <p>Chúng tôi cung cấp các giải pháp truyền thông đa dạng và chuyên nghiệp</p>
         </div>
         
         <div class="services-grid">
             <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
                 <div class="service-img">
                     <img src="https://www.phamhuudungmedia.vn/wp-content/uploads/2023/04/dich-vu-truyen-thong.jpg" alt="Dịch vụ truyền thông">
                 </div>
                 <div class="service-content">
                     <h3>Dịch vụ truyền thông</h3>
-                    <p>Cung cấp giải pháp truyền thông tổng thể, xây dựng chiến lược và triển khai các hoạt động truyền thông hiệu quả.</p>
+                    <p>Chiến lược truyền thông tổng thể, PR báo chí, quảng cáo đa kênh và quản lý khủng hoảng truyền thông.</p>
                     <a href="#" class="btn">Xem chi tiết</a>
                 </div>
             </div>
             
             <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
                 <div class="service-img">
                     <img src="https://www.phamhuudungmedia.vn/wp-content/uploads/2023/04/su-kien-truyen-thong.jpg" alt="Tổ chức sự kiện">
                 </div>
                 <div class="service-content">
                     <h3>Tổ chức sự kiện</h3>
-                    <p>Lên ý tưởng, kịch bản và tổ chức trọn gói các sự kiện truyền thông, ra mắt sản phẩm, hội nghị khách hàng.</p>
+                    <p>Lên ý tưởng, kịch bản và tổ chức trọn gói các sự kiện truyền thông, hội nghị, hội thảo chuyên nghiệp.</p>
                     <a href="#" class="btn">Xem chi tiết</a>
                 </div>
             </div>
             
             <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-video"></i>
+                </div>
                 <div class="service-img">
                     <img src="https://www.phamhuudungmedia.vn/wp-content/uploads/2023/04/quay-phim-chup-anh.jpg" alt="Quay phim chụp ảnh">
                 </div>
                 <div class="service-content">
-                    <h3>Quay phim chụp ảnh</h3>
-                    <p>Sản xuất phim quảng cáo, phim doanh nghiệp, TVC và cung cấp dịch vụ chụp ảnh sản phẩm, ảnh doanh nghiệp.</p>
+                    <h3>Sản xuất phim ảnh</h3>
+                    <p>Sản xuất phim quảng cáo, phim doanh nghiệp, TVC và cung cấp dịch vụ chụp ảnh chuyên nghiệp.</p>
                     <a href="#" class="btn">Xem chi tiết</a>
                 </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>LIÊN HỆ VỚI CHÚNG TÔI</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Tiền Phong, Mê Linh, Hà Nội</p>
+                <p><i class="fas fa-phone"></i> 033 406 3029</p>
+                <p><i class="fas fa-envelope"></i> info@phamhuudungmedia.vn</p>
+                <p><i class="fas fa-clock"></i> Thứ 2 - Thứ 7: 8:00 - 18:00</p>
+                
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h3>GỬI TIN NHẮN CHO CHÚNG TÔI</h3>
+                <!-- Form liên hệ sử dụng FormSubmit miễn phí -->
+                <form action="https://formsubmit.co/longpubg02ml1@gmail.com" method="POST">
+                    <!-- Các tham số cấu hình FormSubmit -->
+                    <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_subject" value="Liên hệ mới từ website Sky Luxury Media">
+                    
+                    <div class="form-group">
+                        <label for="name">Họ và tên</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Số điện thoại</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Nội dung</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Gửi tin nhắn</button>
+                </form>
             </div>
         </div>
     </section>
@@ -316,36 +672,93 @@
         <div class="footer-container">
             <div class="footer-col">
                 <h3>VỀ CHÚNG TÔI</h3>
-                <p>Phạm Hữu Dũng Media cung cấp dịch vụ truyền thông chuyên nghiệp, sáng tạo và hiệu quả cho các doanh nghiệp.</p>
+                <p>Phạm Hữu Dũng Media - Đơn vị cung cấp dịch vụ truyền thông và tổ chức sự kiện chuyên nghiệp hàng đầu tại Việt Nam.</p>
             </div>
             
             <div class="footer-col">
                 <h3>DỊCH VỤ</h3>
-                <a href="#">Dịch vụ truyền thông</a>
+                <a href="#">Truyền thông tổng thể</a>
                 <a href="#">Tổ chức sự kiện</a>
-                <a href="#">Quay phim chụp ảnh</a>
+                <a href="#">Sản xuất phim ảnh</a>
                 <a href="#">Thiết kế đồ họa</a>
+                <a href="#">Digital Marketing</a>
             </div>
             
             <div class="footer-col">
-                <h3>LIÊN HỆ</h3>
-                <p>Địa chỉ: Số 10, ngõ 12, đường ABC, Hà Nội</p>
-                <p>Điện thoại: 0123 456 789</p>
-                <p>Email: info@phamhuudungmedia.vn</p>
+                <h3>LIÊN KẾT NHANH</h3>
+                <a href="#">Trang chủ</a>
+                <a href="#">Dịch vụ</a>
+                <a href="#">Dự án</a>
+                <a href="#">Tin tức</a>
+                <a href="#">Liên hệ</a>
             </div>
             
             <div class="footer-col">
-                <h3>KẾT NỐI VỚI CHÚNG TÔI</h3>
-                <a href="#">Facebook</a>
-                <a href="#">Youtube</a>
-                <a href="#">Instagram</a>
-                <a href="#">LinkedIn</a>
+                <h3>ĐĂNG KÝ NHẬN TIN</h3>
+                <p>Đăng ký để nhận thông tin mới nhất từ chúng tôi</p>
+                <form action="https://formsubmit.co/longpubg02ml1@gmail.com" method="POST">
+                    <input type="hidden" name="_subject" value="Đăng ký nhận tin từ website">
+                    <input type="hidden" name="_captcha" value="false">
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Email của bạn" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Đăng ký</button>
+                </form>
             </div>
         </div>
         
         <div class="copyright">
-            <p>&copy; 2023 Phạm Hữu Dũng Media. All Rights Reserved.</p>
+            <p>&copy; 2023 SKY LUXURY MEDIA. Bảo lưu mọi quyền.</p>
         </div>
     </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mainNav = document.getElementById('main-nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Sticky Header
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                document.querySelector('header').style.background = 'rgba(255, 255, 255, 0.95)';
+                document.querySelector('header').style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                document.querySelector('header').style.background = '#fff';
+                document.querySelector('header').style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Form Submission Feedback
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            form.addEventListener('submit', function(e) {
+                // Hiển thị thông báo khi submit form
+                alert('Cảm ơn bạn! Thông tin đã được gửi thành công.');
+            });
+        });
+    </script>
 </body>
 </html>
